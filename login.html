@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <title>Login</title>
+    <style>
+        .container {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        -moz-transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+        }
+    </style>
+</head>
+<body class="container">
+    <table width="300" border="0" align="center" style="text-align: center;" cellpadding="0" cellspacing="1"
+        bgcolor="#CCCCCC">
+        <tr>
+            <form name="formLogin" method="post" action="checklogin.php">
+                <td>
+                    <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
+                        <tr>
+                            <td colspan="3"><strong>Teacher Login </strong></td>
+                        </tr>
+                        <tr>
+                            <td width="78">Username</td>
+                            <td width="6">:</td>
+                            <td width="294"><input name="myusername" type="text" id="myusername"></td>
+                        </tr>
+                        <tr>
+                            <td>Password</td>
+                            <td>:</td>
+                            <td><input name="mypassword" type="password" id="mypassword"></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td><input type="submit" name="Submit" style="margin-right: 5px;" class="btn btn-success" value="Login" onclick="return checkLogin()">
+                                <a href="register.html"><input type="button" class="btn btn-dark" value="Resister"></a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </form>
+        </tr>
+    </table>
+</body>
+<script>
+    function checkLogin() {
+        var userName = document.forms["formLogin"]["myusername"].value;
+        var password = document.forms["formLogin"]["mypassword"].value;
+
+        var alertMessage = "";
+        var confirm = true;
+
+        if (userName == "" || password == "") {
+            alertMessage = "Enter Login Credentials!!";
+            alert(alertMessage);
+            confirm = false;
+        }
+        return confirm;
+    }
+</script>
+</html>
+

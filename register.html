@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <title>Register</title>
+    <style>
+        .container {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        -moz-transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+        }
+    </style>
+</head>
+<body class="container">
+    <table width="300" border="0" align="center" style="text-align: center;" cellpadding="0" cellspacing="1"
+        bgcolor="#CCCCCC">
+        <tr>
+            <form name="formRegister" method="post" action="check_register.php">
+                <td>
+                    <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
+                        <tr>
+                            <td colspan="3"><strong>Teacher Register </strong></td>
+                        </tr>
+                        <tr>
+                            <td width="88">Teacher Id</td>
+                            <td width="6">:</td>
+                            <td width="294"><input name="teacherId" type="text" id="teacherId"></td>
+                        </tr>
+                        <tr>
+                            <td width="78">Full Name</td>
+                            <td width="6">:</td>
+                            <td width="294"><input name="my_fullname" type="text" id="my_fullname"></td>
+                        </tr>
+                        <tr>
+                            <td width="78">Username</td>
+                            <td width="6">:</td>
+                            <td width="294"><input name="myusername" type="text" id="myusername"></td>
+                        </tr>
+                        <tr>
+                            <td>Password</td>
+                            <td>:</td>
+                            <td><input name="mypassword" type="password" id="mypassword"></td>
+                        </tr>
+                        <tr>
+                            <td>Confirm Password</td>
+                            <td>:</td>
+                            <td><input name="confirmPassword" type="password" id="confirmPassword"></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td><input type="submit" name="Submit" value="Register" onclick="return checkRegister()"></td>
+                        </tr>
+                    </table>
+                </td>
+            </form>
+        </tr>
+    </table>
+</body>
+<script>
+    function checkRegister() {
+        var teacherId = document.forms["formRegister"]["teacherId"].value;
+        var fullname = document.forms["formRegister"]["my_fullname"].value;
+        var username = document.forms["formRegister"]["myusername"].value;
+        var password = document.forms["formRegister"]["mypassword"].value;
+        var confirmPassword = document.forms["formRegister"]["confirmPassword"].value;
+
+        var alertMessage = "";
+        var confirm = true;
+
+        if (teacherId == "") {
+            alertMessage = "Please Enter Teacher Id.";
+            alert(alertMessage);
+            confirm = false;
+        }
+        else if (fullname == "") {
+            alertMessage = "Please Enter Full Name.";
+            alert(alertMessage);
+            confirm = false;
+        }
+        else if (username == "") {
+            alertMessage = "Please Enter User Name.";
+            alert(alertMessage);
+            confirm = false;
+        }
+        else if (password == "" && password != confirmPassword) {
+            alertMessage = "Password didn't match !";
+            alert(alertMessage);
+            confirm = false;
+        }
+        return confirm;
+    }
+</script>
+</html>
