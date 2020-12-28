@@ -168,20 +168,122 @@
                             $sql="SELECT * FROM $tbl_name where studentroll = ".$_GET['roll'];
                             
                             $result = mysqli_query($conn, $sql);
+
+                            $cours1TotalMarkArray = array();
+                            $cours2TotalMarkArray = array();
+                            $cours3TotalMarkArray = array();
+
                             if (mysqli_num_rows($result) > 0) {
                                     while($row = mysqli_fetch_assoc($result)) {
+                                        
                                         $course1totalMark += (double)$row['course1classtest']+(double)$row['course1final'];
                                         $course2totalMark += (double)$row['course2classtest']+(double)$row['course2final'];
                                         $course3totalMark += (double)$row['course3classtest']+(double)$row['course3final'];
+
+                                        array_push($cours1TotalMarkArray,(double)$row['course1classtest']+(double)$row['course1final']);
+                                        array_push($cours2TotalMarkArray,(double)$row['course2classtest']+(double)$row['course2final']);
+                                        array_push($cours3TotalMarkArray,(double)$row['course3classtest']+(double)$row['course3final']);
                                     } 
                                 }
+
+                                $standardDeviationFlag = false;
+                                $standardDeviationErrorMessage = "";
+                                for($i=0;$i<count($cours1TotalMarkArray);$i++)
+                                {
+                                    echo $a[$i];
+                                }
+
                                 $studentSql="SELECT resultsubmissioncount FROM student where roll = ".$_GET['roll'];
                                 $sResult = mysqli_query($conn, $studentSql);
                                 $studentinfo = mysqli_fetch_assoc($sResult);
                                 $resultSubmissionCount = (int)($studentinfo['resultsubmissioncount']);
+                                $cours1TotalMarkArray;
+                                //Comparing the 
+                                for ($i = 0; $i < count($cours1TotalMarkArray); $i++) {
+                                    if(!$standardDeviationFlag)
+                                    {
+                                        for ($k = 0; $k < count($cours1TotalMarkArray); $k++) {
+                                            if(!$standardDeviationFlag)
+                                            {
+                                                if ($cours1TotalMarkArray[$i] != $cours1TotalMarkArray[$k]) {
+                                                    $firstNumber = $cours1TotalMarkArray[$i];
+                                                    $seconNumber = $cours1TotalMarkArray[$k];
+                                                    if($firstNumber>$seconNumber)
+                                                    {
+                                                        $deviatePercentage = (($firstNumber-$seconNumber)/$firstNumber)*100;
+                                                        if($deviatePercentage>=20)
+                                                        {
+                                                            $standardDeviationFlag = true;
+                                                            $standardDeviationErrorMessage = "There is 20% or more deviance on Course 1 marks!! So Result can't be Generate. Deviance = ".$deviatePercentage."%";
+                                                            break;
+                                                        }
+                                                    }
+                                               }
+                                            }
+                                        }
+                                    }
+                                }
+                                if(!$standardDeviationFlag)
+                                {
+                                    for ($i = 0; $i < count($cours2TotalMarkArray); $i++) {
+                                        if(!$standardDeviationFlag)
+                                        {
+                                            for ($k = 0; $k < count($cours2TotalMarkArray); $k++) {
+                                                if(!$standardDeviationFlag)
+                                                {
+                                                    if ($cours2TotalMarkArray[$i] != $cours2TotalMarkArray[$k]) 
+                                                    {
+                                                        $firstNumber = $cours2TotalMarkArray[$i];
+                                                        $seconNumber = $cours2TotalMarkArray[$k];
+                                                        if($firstNumber>$seconNumber)
+                                                        {
+                                                            $deviatePercentage = (($firstNumber-$seconNumber)/$firstNumber)*100;
+                                                            if($deviatePercentage>=20)
+                                                            {
+                                                                $standardDeviationFlag = true;
+                                                                $standardDeviationErrorMessage = "There is 20% or more deviance on Course 2 marks!! So Result can't be Generate. Deviance = ".$deviatePercentage."%";
+                                                                break;
+                                                            }
+                                                        }
+                                                   }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                if(!$standardDeviationFlag)
+                                {
+                                    for ($i = 0; $i < count($cours3TotalMarkArray); $i++) {
+                                        if(!$standardDeviationFlag)
+                                        {
+                                            for ($k = 0; $k < count($cours3TotalMarkArray); $k++) {
+                                                if(!$standardDeviationFlag)
+                                                {
+                                                    if ($cours3TotalMarkArray[$i] != $cours3TotalMarkArray[$k]) 
+                                                    {
+                                                        $firstNumber = $cours3TotalMarkArray[$i];
+                                                        $seconNumber = $cours3TotalMarkArray[$k];
+                                                        if($firstNumber>$seconNumber)
+                                                        {
+                                                            $deviatePercentage = (($firstNumber-$seconNumber)/$firstNumber)*100;
+                                                            if($deviatePercentage>=20)
+                                                            {
+                                                                $standardDeviationFlag = true;
+                                                                $standardDeviationErrorMessage = "There is 20% or more deviance on Course 3 marks!! So Result can't be Generate. Deviance = ".$deviatePercentage."%";
+                                                                break;
+                                                            }
+                                                        }
+                                                   }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                                 if($resultSubmissionCount>0)
                                 {
-                                    $status = "NOT PASSED";
+                                    if($standardDeviationFlag == false)
+                                    {
+                                        $status = "NOT PASSED";
 
                                     $CGPA = getPointAndGrade(($course1totalMark/$resultSubmissionCount+$course2totalMark/$resultSubmissionCount+$course3totalMark/$resultSubmissionCount)/3)[0];
                                     if($CGPA >= 2.5 && 
@@ -206,7 +308,12 @@
                                     echo "<td>" . getPointAndGrade(($course1totalMark/$resultSubmissionCount+$course2totalMark/$resultSubmissionCount+$course3totalMark/$resultSubmissionCount)/3)[1] . "</td>";
                                     echo "<th>" . $status . "</th>";
                                     echo "</tr>";
+                                    }
+                                    else{
+                                        echo "<tr><td colspan='12'>".$standardDeviationErrorMessage."</td></tr>";
+                                    }
                                 }
+                                
 
                         ?>
                     </tbody>
