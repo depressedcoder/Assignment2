@@ -70,6 +70,7 @@
 </body>
 <script>
     function checkRegister() {
+        debugger;
         var teacherId = document.forms["formRegister"]["teacherId"].value;
         var fullname = document.forms["formRegister"]["my_fullname"].value;
         var username = document.forms["formRegister"]["myusername"].value;
@@ -94,7 +95,7 @@
             alert(alertMessage);
             confirm = false;
         }
-        else if (password == "" && password != confirmPassword) {
+        else if (password == "" || password != confirmPassword) {
             alertMessage = "Password didn't match !";
             alert(alertMessage);
             confirm = false;

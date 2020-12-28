@@ -143,8 +143,8 @@ h4 {
             var alertMessage = "";
             var confirm = true;
 
-            if (course1code == "" || course2code == "" || course3code == "" || course1classtest == "" ||
-            course2classtest == "" || course3classtest == "" || course1Final == "" || course2Final == "" || course3Final == "") {
+            if (course1code == "" || course2code == "" || course3code == "" || isNaN(course1classtest) ||
+            isNaN(course2classtest) || isNaN(course3classtest) || isNaN(course1Final)  || isNaN(course2Final) || isNaN(course3Final)) {
                 alertMessage = "Please Enter All The Course Code and Marks.";
                 alert(alertMessage);
                 confirm = false;
