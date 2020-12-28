@@ -149,7 +149,7 @@ h4 {
                 alert(alertMessage);
                 confirm = false;
             }
-            return confirm;
+            return confirm; 
         }
     </script>
 
