@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 28, 2020 at 07:40 AM
+-- Generation Time: Dec 28, 2020 at 06:40 PM
 -- Server version: 8.0.20
 -- PHP Version: 7.3.11
 
@@ -47,9 +47,8 @@ CREATE TABLE `result` (
 --
 
 INSERT INTO `result` (`Id`, `studentroll`, `teacherId`, `course1code`, `course1classtest`, `course1final`, `course2code`, `course2classtest`, `course2final`, `course3code`, `course3classtest`, `course3final`) VALUES
-(2, '201119', '10258', '101', 35, 50, '102', 35, 50, '103', 35, 50),
-(3, '201119', '10312', '101', 30, 45, '102', 29, 45, '103', 35, 45),
-(4, '201108', '10312', '101', 20, 35, '102', 30, 35, '103', 25, 35);
+(16, '201108', '10567', '101', 25, 45, '102', 35, 45, '103', 33, 45),
+(17, '201108', '10312', '101', 10, 35, '102', 40, 35, '103', 32, 35);
 
 -- --------------------------------------------------------
 
@@ -68,9 +67,9 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`roll`, `name`, `resultsubmissioncount`) VALUES
-('201108', 'Rahim', 1),
+('201108', 'Rahim', 2),
 ('201117', 'Mobinur', 0),
-('201119', 'Farhad', 2),
+('201119', 'Farhad', 0),
 ('201129', 'korim', 0),
 ('201139', 'Zayed', 0);
 
@@ -92,8 +91,8 @@ CREATE TABLE `teacher` (
 --
 
 INSERT INTO `teacher` (`teacherId`, `username`, `password`, `full_name`) VALUES
-('10312', 'rahman', '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2', 'Mr. Rahman'),
-('10258', 'saeed', '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2', 'Saeed Siddiq');
+('10567', 'kader', '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2', 'Md. Abdul Kader'),
+('10312', 'rahman', '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2', 'Mr. Rahman');
 
 --
 -- Indexes for dumped tables
@@ -125,7 +124,7 @@ ALTER TABLE `teacher`
 -- AUTO_INCREMENT for table `result`
 --
 ALTER TABLE `result`
-  MODIFY `Id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
