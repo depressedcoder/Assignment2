@@ -188,16 +188,13 @@
 
                                 $standardDeviationFlag = false;
                                 $standardDeviationErrorMessage = "";
-                                for($i=0;$i<count($cours1TotalMarkArray);$i++)
-                                {
-                                    echo $a[$i];
-                                }
-
+                                
                                 $studentSql="SELECT resultsubmissioncount FROM student where roll = ".$_GET['roll'];
                                 $sResult = mysqli_query($conn, $studentSql);
                                 $studentinfo = mysqli_fetch_assoc($sResult);
                                 $resultSubmissionCount = (int)($studentinfo['resultsubmissioncount']);
-                                $cours1TotalMarkArray;
+                                
+
                                 //Comparing the 
                                 for ($i = 0; $i < count($cours1TotalMarkArray); $i++) {
                                     if(!$standardDeviationFlag)
