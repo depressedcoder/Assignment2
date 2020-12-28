@@ -8,7 +8,7 @@ Here teacher can register their profile. teacher username will be unique otherwi
 
 teacher can login thier profile. and see the student list.
 
-Right now there is fixed 5 student comming from the db.
+Right now there is fixed 5 student coming from the db.
 
 teacher can enter student class test and final exam marks for 3 course.
 
