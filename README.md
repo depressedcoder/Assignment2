@@ -18,7 +18,9 @@ teacher can see all the marks submitted by each teacher and also see the final r
 
 the final result is the average of submitted all the teacher's mark.
 
-if every course has a point greater than 2.5 only than the student status will shown passes.
+if any teacher's submitted course mark is got 20% or more deviance from any other teacher's course mark the result will not generate. hence showed a messege with course name and deviance percentage.
+
+if every course has a point greater than 2.5 only than the student status will shown passed otherwise failed.
 
 login authentication is added in every page. valid login credential only can show the teacher profile and other pages.
 
